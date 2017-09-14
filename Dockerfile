@@ -2,6 +2,8 @@ FROM autodoc/ubuntu-base:latest
 
 MAINTAINER Danilo Correa <danilosilva87@gmail.com>
 
+USER root
+
 RUN add-apt-repository -y -u ppa:ondrej/php && \
     apt-get update -y --no-install-recommends && \
     apt-get install -y \
@@ -27,10 +29,15 @@ RUN add-apt-repository -y -u ppa:ondrej/php && \
     libapache2-mod-php5.6 \
     apache2
 
-RUN a2enmod rewrite ssl
+ENV APACHE_RUN_USER application
+ENV APACHE_RUN_GROUP application
 
 ADD ./php.ini /etc/php/5.6/apache2
 ADD ./php.ini /etc/php/5.6/cli
+
+COPY sites-enabled/*.conf /etc/apache2/sites-enabled/
+
+RUN a2enmod rewrite ssl
 
 RUN \
     curl -sS https://getcomposer.org/installer | \
@@ -46,10 +53,7 @@ RUN \
     chmod +x phpunit-5.7.phar && \
     mv phpunit-5.7.phar /usr/local/bin/phpunit
 
+
 EXPOSE 80 443
-
-WORKDIR ~/
-
-USER application
 
 CMD /usr/sbin/apache2ctl -D FOREGROUND
