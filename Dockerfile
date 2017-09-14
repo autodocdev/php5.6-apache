@@ -6,6 +6,7 @@ USER root
 
 RUN add-apt-repository -y -u ppa:ondrej/php && \
     apt-get update -y --no-install-recommends && \
+    curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
     apt-get install -y \
     php5.6 \
     php5.6-cli \
@@ -27,7 +28,10 @@ RUN add-apt-repository -y -u ppa:ondrej/php && \
     php5.6-zip \
     php-memcached \
     libapache2-mod-php5.6 \
-    apache2
+    nodejs \
+    apache2 && \
+    npm install -g bower
+
 
 ENV APACHE_RUN_USER application
 ENV APACHE_RUN_GROUP application
@@ -55,5 +59,7 @@ RUN \
 
 
 EXPOSE 80 443
+
+WORKDIR /home/application
 
 CMD /usr/sbin/apache2ctl -D FOREGROUND
