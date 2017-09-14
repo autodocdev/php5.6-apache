@@ -40,7 +40,10 @@ ADD ./php.ini /etc/php/5.6/apache2
 ADD ./php.ini /etc/php/5.6/cli
 
 COPY sites-enabled/*.conf /etc/apache2/sites-enabled/
-
+ADD ssl/apache.crt \
+    ssl/apache.key \
+    /etc/apache2/ssl/
+    
 RUN a2enmod rewrite ssl
 
 RUN \
