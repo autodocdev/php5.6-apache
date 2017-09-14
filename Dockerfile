@@ -50,6 +50,6 @@ EXPOSE 80 443
 
 WORKDIR ~/
 
-USER aplication
+USER application
 
 CMD /usr/sbin/apache2ctl -D FOREGROUND
