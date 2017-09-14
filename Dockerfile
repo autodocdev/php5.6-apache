@@ -33,16 +33,12 @@ RUN add-apt-repository -y -u ppa:ondrej/php && \
     npm install -g bower
 
 
-ENV APACHE_RUN_USER application
-ENV APACHE_RUN_GROUP application
-
 ADD ./php.ini /etc/php/5.6/apache2
 ADD ./php.ini /etc/php/5.6/cli
+ADD ./ssl/apache.crt ssl/apache.key /etc/apache2/ssl/
+ADD ./envvars /etc/apache2/
 
 COPY sites-enabled/*.conf /etc/apache2/sites-enabled/
-ADD ssl/apache.crt \
-    ssl/apache.key \
-    /etc/apache2/ssl/
     
 RUN a2enmod rewrite ssl
 
