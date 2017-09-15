@@ -32,6 +32,8 @@ RUN add-apt-repository -y -u ppa:ondrej/php && \
     apache2 && \
     npm install -g bower
 
+ENV APACHE_RUN_USER application
+ENV APACHE_RUN_GROUP application
 
 ADD ./php.ini /etc/php/5.6/apache2
 ADD ./php.ini /etc/php/5.6/cli
