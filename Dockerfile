@@ -37,10 +37,10 @@ ENV APACHE_RUN_GROUP application
 
 ADD ./php.ini /etc/php/5.6/apache2
 ADD ./php.ini /etc/php/5.6/cli
-ADD ./ssl/apache.crt ssl/apache.key /etc/apache2/ssl/
 ADD ./envvars /etc/apache2/
 
 COPY sites-enabled/*.conf /etc/apache2/sites-enabled/
+
     
 RUN a2enmod rewrite ssl
 
@@ -58,8 +58,7 @@ RUN \
     chmod +x phpunit-5.7.phar && \
     mv phpunit-5.7.phar /usr/local/bin/phpunit
 
-
-EXPOSE 80 443
+EXPOSE 8888
 
 WORKDIR /home/application
 
