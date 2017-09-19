@@ -14,12 +14,8 @@ fi
 # settings are defined via environment variables and then used in apache2ctl,
 # /etc/init.d/apache2, /etc/logrotate.d/apache2, etc.
 
-: ${APACHE_HTTP_PORT:=80}
+: ${APACHE_HTTP_PORT:=8888}
 export APACHE_HTTP_PORT
-: ${APACHE_HTTPS_PORT:=443}
-export APACHE_HTTPS_PORT
-: ${APACHE_SERVER_NAME:=localhost}
-export APACHE_SERVER_NAME
 : ${APACHE_DOCUMENT_ROOT:=/home/application}
 export APACHE_DOCUMENT_ROOT
 : ${APACHE_RUN_USER:=www-data}
