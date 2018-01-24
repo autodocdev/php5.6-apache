@@ -32,7 +32,7 @@ RUN add-apt-repository -y -u ppa:ondrej/php && \
     libapache2-mod-php5.6 \
     nodejs \
     apache2 && \
-    npm install -g bower \
+    npm install -g bower && \
     pecl install gRPC
 
 ENV APACHE_RUN_USER application
