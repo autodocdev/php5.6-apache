@@ -26,11 +26,14 @@ RUN add-apt-repository -y -u ppa:ondrej/php && \
     php5.6-sqlite3 \
     php5.6-xsl \ 
     php5.6-zip \
+    php5.6-dev \
     php-memcached \
+    php-pear \
     libapache2-mod-php5.6 \
     nodejs \
     apache2 && \
-    npm install -g bower
+    npm install -g bower \
+    pecl install gRPC
 
 ENV APACHE_RUN_USER application
 ENV APACHE_RUN_GROUP application
